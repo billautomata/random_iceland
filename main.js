@@ -153,10 +153,13 @@ function download_and_save_image(photo, lat, lon) {
 
     console.log(options)
 
-    // util.log('uploading to tumblr')
-    // tumblr_api_client.photo('randomiceland', options, function (err, response) {
-    //   util.log('done uploading to tumblr')
-    // })
+    util.log('uploading to tumblr')
+    tumblr_api_client.photo('randomiceland', options, function (err, response) {
+      if(err){
+        return util.log('error uploading to tumblr')
+      }
+      util.log('done uploading to tumblr')
+    })
 
     //
     util.log('tweeting')
@@ -177,7 +180,7 @@ function download_and_save_image(photo, lat, lon) {
 
         } else {
           util.log('success tweeting')
-          console.log(JSON.stringify(response,null,2))
+          // console.log(JSON.stringify(response,null,2))
         }
       }
     )
