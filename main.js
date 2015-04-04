@@ -24,7 +24,7 @@ var tumblr_api_client = tumblr.createClient({
 var twitterAPI = require('node-twitter-api');
 var twitter = new twitterAPI({
   consumerKey: credentials.twitter.consumerKey,
-  consumerSecret: credentials.twitter.consumerSecet,
+  consumerSecret: credentials.twitter.consumerSecret,
   callback: credentials.twitter.callback
 });
 
@@ -151,10 +151,12 @@ function download_and_save_image(photo, lat, lon) {
       data: (__dirname + '/' + local_filename)
     };
 
-    util.log('uploading to tumblr')
-    tumblr_api_client.photo('randomiceland', options, function (err, response) {
-      util.log('done uploading to tumblr')
-    })
+    console.log(options)
+
+    // util.log('uploading to tumblr')
+    // tumblr_api_client.photo('randomiceland', options, function (err, response) {
+    //   util.log('done uploading to tumblr')
+    // })
 
     //
     util.log('tweeting')
@@ -171,9 +173,11 @@ function download_and_save_image(photo, lat, lon) {
           // something went wrong
           util.log('error tweeting')
           util.log(error)
+          return;
 
         } else {
           util.log('success tweeting')
+          console.log(JSON.stringify(response,null,2))
         }
       }
     )
