@@ -49,7 +49,7 @@ function find_image() {
     flickr.photos.search({
       lat: lat,
       lon: lon,
-      radius: 3,
+      radius: 2,
       extras: 'original_format',
       format: 'json'
     }, function (err, result) {
